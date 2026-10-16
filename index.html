@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kindergarten roleplay cases for VG1 Health and Childhood Development English at Lukas VGS.">
+  <meta name="theme-color" content="#0f6758">
+  <title>Kindergarten Conversations · VG1 English</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="cases.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" id="home-link" aria-label="Start over">
+      <span class="brand-mark" aria-hidden="true">💬</span>
+      <span><strong>Kindergarten Conversations</strong><small>VG1 English · Health & Childhood Development</small></span>
+    </a>
+    <span class="school-label">Lukas VGS · Trondheim</span>
+  </header>
+
+  <main>
+    <div class="progress-wrap" aria-label="Activity progress">
+      <ol class="progress" id="progress">
+        <li data-step="group"><span>1</span>Group</li>
+        <li data-step="case"><span>2</span>Case</li>
+        <li data-step="role"><span>3</span>Role</li>
+        <li data-step="level"><span>4</span>Level</li>
+        <li data-step="briefing"><span>5</span>Read</li>
+      </ol>
+    </div>
+
+    <section class="screen active" id="group-screen">
+      <div class="hero page-width">
+        <p class="eyebrow">ROLEPLAY ACTIVITY</p>
+        <h1>One situation. Different perspectives.</h1>
+        <p class="lead">Everyone in your group enters the same kindergarten situation, but each person has experienced it differently. Read only your own story, then talk together and find out what happened.</p>
+        <div class="rule-strip" aria-label="How it works">
+          <div><b>1</b><span>Choose the same group size and case.</span></div>
+          <div><b>2</b><span>Each person chooses a different role.</span></div>
+          <div><b>3</b><span>You may choose different English levels.</span></div>
+        </div>
+      </div>
+      <div class="page-width narrow section-block">
+        <div class="section-heading centered">
+          <p class="eyebrow">STEP 1</p>
+          <h2>How many people are in your group?</h2>
+          <p>This choice decides which cases and roles you can use.</p>
+        </div>
+        <div class="group-choice">
+          <button class="choice-card group-card" data-group-size="3"><span class="big-number">3</span><span><strong>Three people</strong><small>Three different perspectives</small></span></button>
+          <button class="choice-card group-card" data-group-size="4"><span class="big-number">4</span><span><strong>Four people</strong><small>Four different perspectives</small></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="case-screen">
+      <div class="page-width section-block">
+        <button class="back-button" data-back="group">← Change group size</button>
+        <div class="section-heading">
+          <p class="eyebrow">STEP 2</p>
+          <h1>Choose your case.</h1>
+          <p>Everyone in the group should choose the <strong>same case</strong>.</p>
+        </div>
+        <div id="case-grid" class="case-grid"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="role-screen">
+      <div class="page-width narrow section-block">
+        <button class="back-button" data-back="case">← Choose another case</button>
+        <div id="chosen-case-summary" class="chosen-case-summary"></div>
+        <div class="section-heading">
+          <p class="eyebrow">STEP 3</p>
+          <h1>Choose your role.</h1>
+          <p><strong>Everyone must choose differently.</strong> Tell each other only the role name you selected—not what your story says.</p>
+        </div>
+        <div id="role-grid" class="role-grid"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="level-screen">
+      <div class="page-width narrow section-block">
+        <button class="back-button" data-back="role">← Choose another role</button>
+        <div class="section-heading">
+          <p class="eyebrow">STEP 4</p>
+          <h1>Choose your English level.</h1>
+          <div class="level-note"><strong>Your group does not need to choose the same level.</strong> The events and information are the same at every level. Only the English changes.</div>
+        </div>
+        <div class="level-grid">
+          <button class="choice-card level-card" data-level="supported">
+            <span class="level-symbol">🌱</span><span><small>LEVEL 1</small><strong>Supported</strong><em>Shorter sentences, common vocabulary and clearer wording.</em></span>
+          </button>
+          <button class="choice-card level-card" data-level="standard">
+            <span class="level-symbol">🌿</span><span><small>LEVEL 2</small><strong>Standard</strong><em>Natural VG1 English with fuller descriptions.</em></span>
+          </button>
+          <button class="choice-card level-card" data-level="challenge">
+            <span class="level-symbol">🌳</span><span><small>LEVEL 3</small><strong>Challenge</strong><em>More nuanced vocabulary and more complex sentence structure.</em></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="briefing-screen">
+      <div class="page-width briefing-width section-block">
+        <div class="briefing-toolbar">
+          <button class="back-button" data-back="level">← Change level</button>
+          <button class="privacy-button" id="hide-card">🙈 Hide my story</button>
+        </div>
+
+        <article class="story-card" id="story-card">
+          <div class="private-ribbon">🔒 PRIVATE · ONLY READ YOUR OWN ROLE</div>
+          <div class="story-head">
+            <div>
+              <div id="story-badges" class="badges"></div>
+              <h1 id="story-role"></h1>
+              <p id="story-case" class="story-case"></p>
+            </div>
+            <div id="story-icon" class="story-icon" aria-hidden="true"></div>
+          </div>
+
+          <div class="read-first">
+            <strong>Read before you speak.</strong>
+            <span>This is what <em>your character</em> knows, remembers and believes. Other characters may remember things differently.</span>
+          </div>
+
+          <div id="starter-box" class="starter-box hidden"></div>
+          <div id="story-text" class="story-text"></div>
+
+          <div class="ready-box">
+            <h2>When everyone is ready</h2>
+            <p>Put the stories away and play out the conversation in English. Do not read your story aloud. Listen, ask questions and react as your character would.</p>
+            <p id="starter-reminder" class="starter-reminder"></p>
+          </div>
+        </article>
+
+        <div class="after-actions">
+          <button class="secondary-button" id="new-role">Choose another role</button>
+          <button class="primary-button" id="start-over">Start over</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="privacy-cover hidden" id="privacy-cover" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+      <div class="privacy-panel">
+        <div class="privacy-icon">🙈</div>
+        <h2 id="privacy-title">Your story is hidden</h2>
+        <p>Pass the device safely or wait until you can read privately.</p>
+        <button class="primary-button" id="reveal-card">Show my story</button>
+      </div>
+    </div>
+  </main>
+
+  <footer><div class="page-width">Kindergarten Conversations · English at Work · VG1</div></footer>
+</body>
+</html>
